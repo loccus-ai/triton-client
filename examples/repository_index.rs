@@ -1,7 +1,5 @@
 use tonic::transport::Endpoint;
-use triton_client::{
-    grpc_inference_service_client::GrpcInferenceServiceClient, RepositoryIndexRequest,
-};
+use triton_client::{RepositoryIndexRequest, TritonClient};
 
 // constants
 
@@ -16,7 +14,7 @@ async fn main() {
         .connect()
         .await
         .unwrap();
-    let mut client = GrpcInferenceServiceClient::new(channel)
+    let mut client = TritonClient::new(channel)
         .max_encoding_message_size(MAX_MESSAGE_SIZE)
         .max_decoding_message_size(MAX_MESSAGE_SIZE);
 
